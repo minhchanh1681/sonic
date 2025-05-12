@@ -1,0 +1,77 @@
+{
+	// Sử dụng Prettier làm trình định dạng mặc định cho các ngôn ngữ này
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true,
+		"editor.tabSize": 4, // Thường thì Prettier sẽ ghi đè cái này, nhưng để cho chắc
+		"editor.insertSpaces": false // Quan trọng: Yêu cầu VS Code chèn tab
+	},
+	"[javascriptreact]": {
+		// JSX
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true,
+		"editor.tabSize": 4,
+		"editor.insertSpaces": false
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true,
+		"editor.tabSize": 4,
+		"editor.insertSpaces": false
+	},
+	"[typescriptreact]": {
+		// TSX
+		"editor.defaultFormatter": "vscode.typescript-language-features",
+		"editor.formatOnSave": true,
+		"editor.tabSize": 4,
+		"editor.insertSpaces": false
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true,
+		"editor.tabSize": 4,
+		"editor.insertSpaces": false
+	},
+	"[jsonc]": {
+		// JSON with comments
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true,
+		"editor.tabSize": 4,
+		"editor.insertSpaces": false
+	},
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true,
+		"editor.tabSize": 4,
+		"editor.insertSpaces": false
+	},
+	// "[css]": { // Nếu bạn muốn dùng Prettier cho CSS thuần
+	//   "editor.defaultFormatter": "esbenp.prettier-vscode",
+	//   "editor.formatOnSave": true,
+	//   "editor.tabSize": 4,
+	//   "editor.insertSpaces": false
+	// },
+	// "[scss]": { // Nếu bạn muốn dùng Prettier cho SCSS
+	//   "editor.defaultFormatter": "esbenp.prettier-vscode",
+	//   "editor.formatOnSave": true,
+	//   "editor.tabSize": 4,
+	//   "editor.insertSpaces": false
+	// },
+	// Cấu hình Prettier chung (sẽ được áp dụng nếu không có file .prettierrc)
+	"prettier.useTabs": true,
+	"prettier.tabWidth": 4,
+	// Các tùy chọn Prettier khác bạn muốn
+	"prettier.singleQuote": true,
+	"prettier.trailingComma": "es5",
+	"prettier.jsxSingleQuote": true,
+	"prettier.arrowParens": "always",
+	"prettier.semi": true,
+	// Bật chế độ format khi lưu
+	"editor.formatOnSave": true
+	// (QUAN TRỌNG CHO TAILWINDCSS)
+	// Để plugin prettier-plugin-tailwindcss hoạt động hiệu quả nhất
+	// khi cấu hình qua settings.json, bạn VẪN NÊN có một file .prettierrc.json
+	// tối thiểu trong gốc dự án để khai báo plugin.
+	// VS Code Prettier extension thường ưu tiên đọc file cấu hình hơn là settings.json
+	// cho việc load plugin.
+}
