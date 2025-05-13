@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { geistMono, geistSans } from "@/types/font";
+import Header from "@/components/layouts/Header";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -11,6 +12,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 	return (
 		<html lang="en">
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+				<Header />
 				{children}
 			</body>
 		</html>
