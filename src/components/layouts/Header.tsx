@@ -1,11 +1,11 @@
 "use client"
 
 import { menus } from "@/data/navigation"
+import { ArrowUpRight } from 'lucide-react'
+import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
 import { Button } from "../ui/button"
-import Image from "next/image"
-import { ArrowUpRight } from 'lucide-react';
 
 export default function Header() {
 	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
