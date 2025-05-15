@@ -1,3 +1,4 @@
+import Footer from "@/components/layouts/Footer";
 import Header from "@/components/layouts/Header";
 import { geistMono, geistSans } from "@/types/font";
 import type { Metadata } from "next";
@@ -14,6 +15,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 				<Header />
 				{children}
+				<Footer />
 			</body>
 		</html>
 	);
