@@ -11,7 +11,7 @@ export default function Header() {
 	const [openMenu, setOpenMenu] = useState<string | null>(null);
 
 	return (
-		<div className="border-b bg-white flex justify-between items-center h-19">
+		<div className="border-b flex justify-between items-center h-19 w sticky top-0 z-50 shadow-sm mb-10 rounded-3xl bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 !backdrop-filter !backdrop-blur-[25px]">
 			<div className="container mx-auto flex justify-between items-center">
 				<Link href="/">
 					<Image src="./logo.svg" alt="Logo" width={100} height={50} className="h-12" />
@@ -21,7 +21,7 @@ export default function Header() {
 						<div
 							key={menu.label}
 							className="relative"
-							onMouseEnter={() => setOpenMenu(menu.label)}
+							onMouseEnter={() => menu?.sections ? setOpenMenu(menu.label) : setOpenMenu(null)}
 							onMouseLeave={() => setOpenMenu(null)}
 						>
 							<button className="flex items-center text-sm font-medium text-gray-800 hover:text-green-600">
@@ -45,7 +45,7 @@ export default function Header() {
 														<Link
 															key={i}
 															href={item.href}
-															className="block rounded-lg px-3 py-2 transition hover:bg-gray-100"
+															className="block rounded-lg px-3 py-3 transition hover:bg-gray-100"
 														>
 															<p className="text-sm font-medium text-gray-900">
 																{item.title}
