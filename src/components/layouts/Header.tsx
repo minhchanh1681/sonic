@@ -1,51 +1,67 @@
-"use client"
-
-import { menus } from "@/data/navigation"
-import { ArrowUpRight } from 'lucide-react'
-import Image from "next/image"
-import Link from "next/link"
-import { useState } from "react"
-import { Button } from "../ui/button"
+"use client";
+import { Button } from "@/components/ui/button";
+import { menuItems } from "@/data/navigation";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Header() {
-	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+	const [openMenu, setOpenMenu] = useState<string | null>(null);
 
 	return (
-		<div className="border-b bg-white flex justify-between items-center ">
+		<div className="border-b bg-white flex justify-between items-center h-19">
 			<div className="container mx-auto flex justify-between items-center">
 				<Link href="/">
 					<Image src="./logo.svg" alt="Logo" width={100} height={50} className="h-12" />
 				</Link>
-				<div className=" px-4 flex space-x-6 py-4 relative">
-					{menus.map((menu, index) => (
+				<div className="flex items-center space-x-12">
+					{menuItems?.map((menu) => (
 						<div
-							key={index}
+							key={menu.label}
 							className="relative"
-							onMouseEnter={() => setHoveredIndex(index)}
-							onMouseLeave={() => setHoveredIndex(null)}
+							onMouseEnter={() => setOpenMenu(menu.label)}
+							onMouseLeave={() => setOpenMenu(null)}
 						>
-							<div className="cursor-pointer px-4 py-2 rounded hover:bg-gray-100">
-								{menu.href ? (
-									<Link href={menu.href}>{menu.label}</Link>
-								) : (
-									<span>{menu.label}</span>
+							<button className="flex items-center text-sm font-medium text-gray-800 hover:text-green-600">
+								{menu.label} {menu?.sections ? <ChevronDown size={16} /> : null}
+							</button>
+							<AnimatePresence>
+								{openMenu === menu.label && (
+									<motion.div
+										initial={{ opacity: 0, y: 10 }}
+										animate={{ opacity: 1, y: 0 }}
+										exit={{ opacity: 0, y: 10 }}
+										className="absolute left-0 mt-2 w-[480px] rounded-2xl border border-gray-100 bg-white p-4 shadow-xl"
+									>
+										{menu?.sections?.map((section, index) => (
+											<div key={index} className="mb-4">
+												<p className="mb-2 text-sm font-semibold text-gray-500">
+													{section.heading}
+												</p>
+												<div className="space-y-2">
+													{section?.items?.map((item, i) => (
+														<Link
+															key={i}
+															href={item.href}
+															className="block rounded-lg px-3 py-2 transition hover:bg-gray-100"
+														>
+															<p className="text-sm font-medium text-gray-900">
+																{item.title}
+															</p>
+															<p className="text-xs text-gray-500">{item.desc}</p>
+														</Link>
+													))}
+												</div>
+												{index !== menu.sections.length - 1 && (
+													<div className="my-4 border-t border-gray-200" />
+												)}
+											</div>
+										))}
+									</motion.div>
 								)}
-							</div>
-
-							{/* Dropdown */}
-							{!menu.href && hoveredIndex === index && (
-								<div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg border rounded z-50">
-									{menu.items?.map((item, idx) => (
-										<Link
-											key={idx}
-											href={item.href}
-											className="block px-4 py-2 hover:bg-gray-100 text-sm"
-										>
-											{item.label}
-										</Link>
-									))}
-								</div>
-							)}
+							</AnimatePresence>
 						</div>
 					))}
 				</div>
